@@ -5,9 +5,9 @@ import AppointmentController from '@modules/appointments/infra/http/controllers/
 import ensureAuthenticaded from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 
 const appointmentsRouter = Router();
-const appointentsController = new AppointmentController();
+const appointmentsController = new AppointmentController();
 
 appointmentsRouter.use(ensureAuthenticaded);
-appointmentsRouter.post('/', appointentsController.create);
+appointmentsRouter.post('/', appointmentsController.create);
 
 export default appointmentsRouter;
