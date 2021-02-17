@@ -2,7 +2,7 @@ import nodemailer, { Transporter } from 'nodemailer';
 import { inject, injectable } from 'tsyringe';
 
 import IMailTemplateProvider from '@shared/container/providers/MailTemplateProvider/models/IMailTemplateProvider';
-import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import IMailProvider from '@shared/container/providers/mailProvider/models/IMailProvider';
 import ISendMailDTO from '@shared/container/providers/MailProvider/dtos/ISendMailDTO';
 
 @injectable()
