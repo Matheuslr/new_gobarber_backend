@@ -7,6 +7,8 @@ import AppError from '@shared/errors/AppError';
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import INotificationRepository from '@modules/notifications/repositories/INotificationRepository';
 
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+
 // SOLID
 
 // Dependency Inversion
@@ -24,6 +26,9 @@ class CreateAppointmentService {
 
     @inject('NotificationRepository')
     private NotificationRepository: INotificationRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -66,6 +71,13 @@ class CreateAppointmentService {
       recipient_id: provider_id,
       content: `Novo agendamento para dia ${dateFormated}`,
     });
+
+    const cacheKey = `provider-appointment:${provider_id}:${format(
+      appointmentDate,
+      'yyyy-M-d',
+    )}`;
+
+    await this.cacheProvider.invalidate(cacheKey);
 
     return appointment;
   }
