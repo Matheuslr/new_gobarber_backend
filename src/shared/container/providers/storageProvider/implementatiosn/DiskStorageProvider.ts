@@ -5,7 +5,7 @@ import uploadConfig from '@config/upload';
 
 class DiskStorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<string> {
-    const isUploadCreated = await !fs.promises.access(
+    const isUploadCreated = await !!fs.promises.access(
       path.resolve(uploadConfig.uploadsFolder),
     );
 
